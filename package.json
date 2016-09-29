@@ -1,13 +1,13 @@
 {
   "name": "practice",
   "version": "1.0.0",
-  "description": "",
+  "description": "StreamDash",
   "main": "webpack.config.js",
   "scripts": {
     "firstRun": "npm install react react-dom flux babel-preset-react babel-preset-stage-0 babel-loader babel-core babel-preset-es2015 webpack webpack-dev-server grunt grunt-contrib-watch --save",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Alexandre Ferreira",
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.14.0",

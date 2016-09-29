@@ -7,15 +7,16 @@ class LoginStore extends EventEmitter {
 		super();
 	}
 
-	handleChannel(channel) {
-		sessionStorage.channel = channel;
+	handleChannel(channel, clientId) {
+		sessionStorage.twitch = channel;
+		sessionStorage.clientId = clientId;
 		this.emit('change');
 	}
 
 	handleActions(action) {
 		switch (action.type) {
 			case 'GET_CHANNEL': {
-				this.handleChannel(action.channel);
+				this.handleChannel(action.channel, action.clientId);
 			}
 		}
 	}

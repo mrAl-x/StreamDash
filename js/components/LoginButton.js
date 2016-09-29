@@ -13,7 +13,7 @@ export default class LoginButton extends React.Component {
 	checkUrl() {
 		try {
 			const url   = window.location.hash.split('access_token=')[1]
-			if (url || sessionStorage.channel)
+			if (url || sessionStorage.twitch)
 				this.getChannel();
 		}
 		catch(err) {
@@ -22,11 +22,12 @@ export default class LoginButton extends React.Component {
 	}
 
 	getChannel() {
-		Twitch.init({clientId: 'lthdupwglh0epkjmqo93smokw2agfdl'}, function(error, status) {
+		const clientId = 'lthdupwglh0epkjmqo93smokw2agfdl'
+		Twitch.init({clientId: clientId}, function(error, status) {
 			Twitch.api({method: 'channel'}, function(error, channel) {
 				channel = JSON.stringify(channel);
 				// Sends the channel JSON to the the actions where any store can get it
-				LoginActions.getChannel(channel);
+				LoginActions.getChannel(channel, clientId);
 		   });
 	   });
 	}

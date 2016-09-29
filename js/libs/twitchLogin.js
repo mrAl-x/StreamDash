@@ -17,6 +17,6 @@ $('.twitch-connect').click( function() {
    });
 
    Twitch.api({method: 'channel'}, function(error, channel) {
-      sessionStorage.channel = JSON.stringify(channel);
+      sessionStorage.twitch = JSON.stringify(channel);
    });
 });
