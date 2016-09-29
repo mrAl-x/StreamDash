@@ -1,8 +1,8 @@
 import dispatcher from '../dispatcher';
 
-export function getLastFollower(user) {
+export function getLastFollowers(user) {
 	dispatcher.dispatch({
-		type: 'GET_FOLLOWER',
+		type: 'GET_FOLLOWERS',
 		channel: user.channel,
 		clientId: user.clientId
 	});

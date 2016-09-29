@@ -4,6 +4,9 @@ import React from 'react';
 // Store
 import FollowerListStore from '../stores/FollowerListStore';
 
+// Components
+import FollowerLink from './FollowerLink';
+
 // Actions
 import * as FollowersActions from '../actions/FollowersActions';
 
@@ -16,33 +19,41 @@ export default class FollowerList extends React.Component {
 			clientId: sessionStorage.clientId,
 			channel
 		};
-		FollowersActions.getLastFollower(user);
+		FollowersActions.getLastFollowers(user);
 	}
 
 	componentWillMount() {
 		FollowerListStore.on('change', () => {
 			this.setState({
-				follower: FollowerListStore.returnFollower()
+				...FollowerListStore.returnFollower()
 			});
 		});
 	}
 
-	returnFollower(key) {
-		let returnFollower;
-		(this.state) ? returnFollower = this.state.follower : returnFollower;
-		if (returnFollower) {
-			console.log(returnFollower);
-			return returnFollower[key];
+	returnFollowers() {
+		const totalFollowers = Object.keys(this.state).length;
+		const twitchUrl = 'https://www.twitch.tv/';
+		let followers = [];
+		for (let i = 0; i < totalFollowers; i++ ) {
+			followers.push(
+				<FollowerLink key={this.state[i].user.name} title={this.state[i].user.display_name}
+					link={twitchUrl + this.state[i].user.name}/>
+			);
 		}
+
+		return followers;
 	}
 
 	render() {
-		const twitchUrl = 'https://www.twitch.tv/';
-		return (
-			<div>
-				<p>Last follower (maybe not in this component?)</p>
-				<a href={twitchUrl + this.returnFollower('name')} target='blank'>{this.returnFollower('display_name')}</a>
-			</div>
-		);
+		if (this.state) {
+			return (
+				<ul>
+					{this.returnFollowers()}
+				</ul>
+			)
+		}
+		else {
+			return (<a></a>);
+		}
 	}
 }

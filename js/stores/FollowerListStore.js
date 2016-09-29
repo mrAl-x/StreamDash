@@ -6,33 +6,36 @@ import dispatcher from '../dispatcher';
 class FollowersStore extends EventEmitter {
 	constructor() {
 		super();
-		this.follower = {};
+		this.followers = [];
 	}
 
-	getLastFollower(channel, clientId) {
-		axios.get('https://api.twitch.tv/kraken/channels/' + channel + '/follows?limit=1&client_id=' + clientId).then((data) => {
-			this.handleFollower(data);
+	getLastFollowers(channel, clientId) {
+		axios.get('https://api.twitch.tv/kraken/channels/' + channel + '/follows?client_id=' + clientId).then((data) => {
+			this.handleFollowers(data);
 		})
 		.catch(function (data) {
 			console.error(data);
 		});
 	}
 
-	handleFollower(json) {
-		this.follower = json.data.follows[0].user;
+	handleFollowers(json) {
+		if(json.data.follows) {
+			const followsLength = Object.keys(json.data.follows).length;
+			this.followers.push(...json.data.follows);
+		}
 		this.emit('change');
 	}
 
 	handleActions(action) {
 		switch (action.type) {
-			case 'GET_FOLLOWER': {
-				this.getLastFollower(action.channel, action.clientId);
+			case 'GET_FOLLOWERS': {
+				this.getLastFollowers(action.channel, action.clientId);
 			}
 		}
 	}
 
 	returnFollower() {
-		return this.follower;
+		return this.followers;
 	}
 }
 

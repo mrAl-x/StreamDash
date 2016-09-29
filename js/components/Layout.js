@@ -6,7 +6,7 @@ import LoginStore from '../stores/LoginStore';
 
 // Components
 import LoginButton from './LoginButton';
-import Followers from './Followers';
+import FollowerNumber from './FollowerNumber';
 import FollowerList from './FollowerList';
 // import TwitchAlertsButton from './TwitchAlertsButton';
 
@@ -36,7 +36,8 @@ export default class Layout extends React.Component {
 			return (
 				<div>
 					<h3>Welcome to {this.state.display_name}'s dashboard!</h3>
-					<Followers followers={this.state.followers} />
+					<FollowerNumber followers={this.state.followers} />
+					<p>Last follower (maybe not in this component?)</p>
 					<FollowerList />
 				</div>
 			)
