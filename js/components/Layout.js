@@ -7,6 +7,7 @@ import LoginStore from '../stores/LoginStore';
 // Components
 import LoginButton from './LoginButton';
 import StreamTitle from './StreamTitle';
+import StreamGame from './StreamGame';
 import FollowerNumber from './FollowerNumber';
 import FollowerList from './FollowerList';
 // import TwitchAlertsButton from './TwitchAlertsButton';
@@ -39,6 +40,8 @@ export default class Layout extends React.Component {
 				<div>
 					<h3>Welcome to {this.state.display_name}'s dashboard!</h3>
 					<StreamTitle title={this.state.status} />
+					<span>Playing </span>
+					<StreamGame game={this.state.game} />
 					<FollowerNumber followers={this.state.followers} />
 					<p>Last follower (maybe not in this component?)</p>
 					<FollowerList />

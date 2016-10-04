@@ -11,7 +11,7 @@ export default class StreamTitle extends React.Component {
 		}
 	}
 
-	handleClick(e) {		
+	handleClick(e) {
 		this.setState({
 			title: e.target.innerHTML,
 			input: true
