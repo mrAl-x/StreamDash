@@ -9,6 +9,27 @@ class FollowersStore extends EventEmitter {
 		this.followers = [];
 	}
 
+	// getFollowersNumber() {
+	// 	Twitch.init({clientId: 'lthdupwglh0epkjmqo93smokw2agfdl'}, function(error, status) {
+	//       if (error) {
+	//          // error encountered while loading
+	//          console.log(error);
+	//       }
+	//       // the sdk is now loaded
+	//       Twitch.login({
+	//    		scope: ['user_read', 'channel_read']
+	//    	});
+
+	//       if (status.authenticated) {
+	//          // user is currently logged in
+	//          Twitch.api({method: 'channel'}, function(channel) {
+	//             console.log(channel);
+	//             debugger;
+	//          });
+	//       }
+	//    });
+	// }
+
 	getLastFollowers(channel, clientId) {
 		axios.get('https://api.twitch.tv/kraken/channels/' + channel + '/follows?client_id=' + clientId).then((data) => {
 			this.handleFollowers(data);
@@ -30,6 +51,11 @@ class FollowersStore extends EventEmitter {
 		switch (action.type) {
 			case 'GET_FOLLOWERS': {
 				this.getLastFollowers(action.channel, action.clientId);
+				break;
+			}
+			case 'GET_FOLLOWERS_NUMBER': {
+				this.getFollowersNumber();
+				break;
 			}
 		}
 	}

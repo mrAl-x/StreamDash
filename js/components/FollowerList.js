@@ -20,6 +20,7 @@ export default class FollowerList extends React.Component {
 			channel
 		};
 		FollowersActions.getLastFollowers(user);
+		// FollowersActions.getFollowersNumber();
 	}
 
 	componentWillMount() {
