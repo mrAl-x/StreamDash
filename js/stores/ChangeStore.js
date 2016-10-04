@@ -16,15 +16,19 @@ class ChangeStore extends EventEmitter {
 			title
 		};
 
-		$.ajax({
-			url: 'https://api.twitch.tv/kraken/channels/' + twitch.channel + '?oauth_token=' + twitch.token + '&client_id=' + twitch.clientId + '&channel[status]=' + twitch.title + '&_method=put',
-			type: 'GET',
-			contentType: 'application/json',
-			dataType: 'jsonp',
-			success: function(data) {
-				console.log('Changes will be updated in a few seconds!');
-			}
+		axios.get('https://api.twitch.tv/kraken/channels/' + twitch.channel + '?oauth_token=' + twitch.token + '&client_id=' + twitch.clientId + '&channel[status]=' + twitch.title + '&_method=put').then((data) => {
+			this.updateSession(twitch.title);
+			console.log('Changes will be updated in a few seconds!');
+		})
+		.catch(function (data) {
+			console.error(data);
 		});
+	}
+
+	updateSession(newTitle) {
+		let newSession = JSON.parse(sessionStorage.twitch);
+		newSession.status = newTitle;
+		sessionStorage.twitch = JSON.stringify(newSession);
 	}
 
 	handleActions(action) {
