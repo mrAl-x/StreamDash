@@ -1,5 +1,8 @@
 import React from 'react';
 
+import ChangeStore from '../stores/ChangeStore';
+import * as ChangeActions from '../actions/ChangeActions';
+
 export default class StreamTitle extends React.Component {
 
 	constructor() {
@@ -23,6 +26,7 @@ export default class StreamTitle extends React.Component {
 	}
 
 	confirmNewTitle() {
+		ChangeActions.changeTitle(this.title);
 		this.setState({
 			title: this.title,
 			input: false

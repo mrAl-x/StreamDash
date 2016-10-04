@@ -3,10 +3,6 @@ import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher';
 
 class LoginStore extends EventEmitter {
-	constructor() {
-		super();
-	}
-
 	handleChannel(channel, clientId) {
 		sessionStorage.twitch = channel;
 		sessionStorage.clientId = clientId;

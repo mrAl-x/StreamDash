@@ -36,7 +36,7 @@ export default class LoginButton extends React.Component {
 		Twitch.init({clientId: 'lthdupwglh0epkjmqo93smokw2agfdl'}, function(error, status) {
 			// the sdk is now loaded
 			Twitch.login({
-				scope: ['user_read', 'channel_read']
+				scope: ['user_read', 'channel_read', 'channel_editor', 'chat_login']
 			});
 		});
 	}

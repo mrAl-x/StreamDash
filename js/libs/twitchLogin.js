@@ -1,5 +1,4 @@
 $('.twitch-connect').click( function() {
-   console.log('click!');
    Twitch.init({clientId: 'lthdupwglh0epkjmqo93smokw2agfdl'}, function(error, status) {
       if (error) {
          // error encountered while loading
@@ -7,7 +6,7 @@ $('.twitch-connect').click( function() {
       }
       // the sdk is now loaded
       Twitch.login({
-   		scope: ['user_read', 'channel_read']
+   		scope: ['user_read', 'channel_read', 'channel_editor', 'chat_login']
    	});
 
       if (status.authenticated) {
