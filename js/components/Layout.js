@@ -10,6 +10,7 @@ import StreamTitle from './StreamTitle';
 import StreamGame from './StreamGame';
 import FollowerNumber from './FollowerNumber';
 import FollowerList from './FollowerList';
+import Chat from './Chat';
 // import TwitchAlertsButton from './TwitchAlertsButton';
 
 export default class Layout extends React.Component {
@@ -45,6 +46,7 @@ export default class Layout extends React.Component {
 					<FollowerNumber followers={this.state.followers} />
 					<p>Last follower (maybe not in this component?)</p>
 					<FollowerList />
+					<Chat />
 				</div>
 			)
 		}
