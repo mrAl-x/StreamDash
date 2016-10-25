@@ -7,31 +7,23 @@ class FollowersStore extends EventEmitter {
 	constructor() {
 		super();
 		this.followers = [];
+		this.totalFollowers;
 	}
 
-	// getFollowersNumber() {
-	// 	Twitch.init({clientId: 'lthdupwglh0epkjmqo93smokw2agfdl'}, function(error, status) {
-	//       if (error) {
-	//          // error encountered while loading
-	//          console.log(error);
-	//       }
-	//       // the sdk is now loaded
-	//       Twitch.login({
-	//    		scope: ['user_read', 'channel_read']
-	//    	});
+	getTotalFollowers(channel, clientId) {
+		const url = `https://api.twitch.tv/kraken/channels/${channel}?client_id=${clientId}`;
 
-	//       if (status.authenticated) {
-	//          // user is currently logged in
-	//          Twitch.api({method: 'channel'}, function(channel) {
-	//             console.log(channel);
-	//             debugger;
-	//          });
-	//       }
-	//    });
-	// }
+		axios.get(url).then((data) => {
+			this.handleTotalFollowers(data.data.followers)
+		})
+		.catch(function (data) {
+			console.error(data);
+		});
+	}
 
 	getLastFollowers(channel, clientId) {
-		axios.get('https://api.twitch.tv/kraken/channels/' + channel + '/follows?client_id=' + clientId).then((data) => {
+		const url = `https://api.twitch.tv/kraken/channels/${channel}/follows?client_id=${clientId}`;
+		axios.get(url).then((data) => {
 			this.handleFollowers(data);
 		})
 		.catch(function (data) {
@@ -39,12 +31,27 @@ class FollowersStore extends EventEmitter {
 		});
 	}
 
+	handleTotalFollowers(followers) {
+		if (followers) {
+			this.totalFollowers = followers;
+		}
+		this.emit('change');
+	}
+
 	handleFollowers(json) {
-		if(json.data.follows) {
+		if (json.data.follows) {
 			const followsLength = Object.keys(json.data.follows).length;
 			this.followers.push(...json.data.follows);
 		}
 		this.emit('change');
+	}
+
+	returnFollower() {
+		return this.followers;
+	}
+
+	returnTotalFollowers() {
+		return this.totalFollowers;
 	}
 
 	handleActions(action) {
@@ -54,14 +61,10 @@ class FollowersStore extends EventEmitter {
 				break;
 			}
 			case 'GET_FOLLOWERS_NUMBER': {
-				this.getFollowersNumber();
+				this.getTotalFollowers(action.channel, action.clientId);
 				break;
 			}
 		}
-	}
-
-	returnFollower() {
-		return this.followers;
 	}
 }
 

@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Store
-import FollowerListStore from '../stores/FollowerListStore';
+import FollowerListStore from '../stores/FollowerStore';
 
 // Components
 import FollowerLink from './FollowerLink';
@@ -20,7 +20,6 @@ export default class FollowerList extends React.Component {
 			channel
 		};
 		FollowersActions.getLastFollowers(user);
-		// FollowersActions.getFollowersNumber();
 	}
 
 	componentWillMount() {

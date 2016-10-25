@@ -1,8 +1,10 @@
 import dispatcher from '../dispatcher';
 
-export function getFollowersNumber(user) {
+export function getTotalFollowers(user) {
 	dispatcher.dispatch({
-		type: 'GET_FOLLOWERS_NUMBER'
+		type: 'GET_FOLLOWERS_NUMBER',
+		channel: user.channel,
+		clientId: user.clientId
 	});
 }
 

@@ -46,9 +46,9 @@ export default class Layout extends React.Component {
 					<FollowerNumber followers={this.state.followers} />
 					<p>Last follower (maybe not in this component?)</p>
 					<FollowerList />
-					<Chat />
 				</div>
 			)
+					// <Chat />
 		}
 		else {
 			return (
