@@ -23,7 +23,7 @@ export default class StreamGame extends React.Component {
 		});
 	}
 
-	changeGame(e) {
+	searchGame(e) {
 		this.game = e.target.value;
 		if (e.target.value.length >= 2) {
 			// Creates a delay after the user stops typing before triggering the action
@@ -38,7 +38,7 @@ export default class StreamGame extends React.Component {
 		}
 
 		this.timeout = setTimeout(() => {
-			StreamGameActions.changeGame(title);
+			StreamGameActions.searchGame(title);
 		}, timer);
 	}
 
@@ -53,8 +53,8 @@ export default class StreamGame extends React.Component {
 		if (this.state.input && this.state.game) {
 			return (
 				<div>
-					<input defaultValue={this.state.game || this.props.game} onKeyUp={this.changeGame.bind(this)} />
-					<button onClick={this.confirmNewGame.bind(this)}>Done</button>
+					<input defaultValue={this.state.game || this.props.game} onKeyUp={this.searchGame.bind(this)}
+						/>
 					<GamesDropdown />
 				</div>
 			)

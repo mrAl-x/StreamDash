@@ -1,8 +1,15 @@
 import dispatcher from '../dispatcher';
 
-export function changeGame(title) {
+export function searchGame(title) {
 	dispatcher.dispatch({
-		type: 'CHANGE_GAME',
+		type: 'SEARCH_GAME',
+		title
+	});
+}
+
+export function pickGame(title) {
+	dispatcher.dispatch({
+		type: 'PICK_GAME',
 		title
 	});
 }
