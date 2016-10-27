@@ -1,7 +1,8 @@
 import React from 'react';
 
-import ChangeStore from '../stores/ChangeStore';
-import * as ChangeActions from '../actions/ChangeActions';
+import StreamGameStore from '../stores/StreamGameStore';
+import GamesDropdown from '../components/GamesDropdown';
+import * as StreamGameActions from '../actions/StreamGameActions';
 
 export default class StreamGame extends React.Component {
 
@@ -11,7 +12,8 @@ export default class StreamGame extends React.Component {
 		this.state = {
 			game: this.game,
 			input: false
-		}
+		};
+		this.timeout;
 	}
 
 	handleClick(e) {
@@ -21,8 +23,23 @@ export default class StreamGame extends React.Component {
 		});
 	}
 
-	handleNewGame(e) {
+	changeGame(e) {
 		this.game = e.target.value;
+		if (e.target.value.length >= 2) {
+			// Creates a delay after the user stops typing before triggering the action
+			this.typewatch(e.target.value, 1000);
+		}
+	}
+
+	typewatch(title, timer) {
+		if (this.timeout) {
+			clearTimeout(this.timeout);
+			this.timeout = null;
+		}
+
+		this.timeout = setTimeout(() => {
+			StreamGameActions.changeGame(title);
+		}, timer);
 	}
 
 	confirmNewGame() {
@@ -36,8 +53,11 @@ export default class StreamGame extends React.Component {
 		if (this.state.input && this.state.game) {
 			return (
 				<div>
-					<input defaultValue={this.state.game || this.props.game} onChange={this.handleNewGame.bind(this)} />
+					<input defaultValue={this.state.game || this.props.game} onKeyUp={this.changeGame.bind(this)} />
 					<button onClick={this.confirmNewGame.bind(this)}>Done</button>
+					<ul className="gameList">
+						<GamesDropdown />
+					</ul>
 				</div>
 			)
 		}
