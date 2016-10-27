@@ -6,25 +6,48 @@ import StreamGameStore from '../stores/StreamGameStore';
 export default class GamesDropdown extends React.Component {
 	constructor() {
 		super();
-		this.state = {
-
-		};
 	}
 
-	fetchGame() {
+	componentDidMount() {
 		StreamGameStore.on('change', () => {
-			this.setState({
+			let i = 0;
+			let games = [
 				...StreamGameStore.returnGames()
+			];
+			games = games.slice(0, 5);
+
+			this.setState({
+				...games
 			});
-			console.log(this.state);
 		});
 	}
 
+	returnGames() {
+		let games = [];
+		const stateLength = Object.keys(this.state).length;
+
+		for (let i = 0; i < stateLength; i++) {
+			games.push(
+				<li key={i}>
+					<img src={this.state[i].box.small} alt="" />
+					<span>{this.state[i].name}</span>
+				</li>
+			);
+		}
+
+		return games;
+	}
+
 	render() {
-		return (
-			<li>
-				<span>{this.fetchGame()}</span>
-			</li>
-		);
+		if (this.state) {
+			return (
+				<ul className="gameList">
+					{this.returnGames()}
+				</ul>
+			);
+		}
+		else {
+			return <li></li>;
+		}
 	}
 }

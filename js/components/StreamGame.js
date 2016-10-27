@@ -55,9 +55,7 @@ export default class StreamGame extends React.Component {
 				<div>
 					<input defaultValue={this.state.game || this.props.game} onKeyUp={this.changeGame.bind(this)} />
 					<button onClick={this.confirmNewGame.bind(this)}>Done</button>
-					<ul className="gameList">
-						<GamesDropdown />
-					</ul>
+					<GamesDropdown />
 				</div>
 			)
 		}
