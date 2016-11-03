@@ -6,9 +6,7 @@ import LoginStore from '../stores/LoginStore';
 
 // Components
 import LoginButton from './LoginButton';
-import StreamTitle from './StreamTitle';
-import StreamGame from './StreamGame';
-import FollowerNumber from './FollowerNumber';
+import StreamCard from './StreamCard';
 import FollowerList from './FollowerList';
 import Chat from './Chat';
 // import TwitchAlertsButton from './TwitchAlertsButton';
@@ -48,20 +46,20 @@ export default class Layout extends React.Component {
 					</header>
 					<div className="container">
 						<div className="row">
-							<div className="col-md-12">
+							<div className="col-lg-12">
 								<div className="avatar">
 									<img src={this.state.logo} className="avatar__pic" />
 								</div>
 							</div>
-							<div className="col-md-7">
-								<StreamTitle title={this.state.status} />
-								<span>Playing </span>
-								<StreamGame game={this.state.game} />
-								<FollowerNumber followers={this.state.followers} />
-								<p>Last follower (maybe not in this component?)</p>
+						</div>
+						<div className="cards row">
+							<div className="cards__container cards__container--stream col-lg-4">
+								<StreamCard status={this.state.status} game={this.state.game} followers={this.state.followers} />
+							</div>
+							<div className="cards__container cards__container--followers col-lg-3">
 								<FollowerList />
 							</div>
-							<div className="rightSide col-md-5">
+							<div className="rightSide col-lg-5">
 								<Chat />
 							</div>
 						</div>

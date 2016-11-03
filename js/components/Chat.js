@@ -10,7 +10,7 @@ export default class Chat extends React.Component {
 	render() {
 		return (
 			<iframe className="chat" frameBorder="0" scrolling="yes" id="chat_embed"
-				width="400" height="550" src={this.url} >
+				width="99%" height="550" src={this.url} >
 			</iframe>
 		);
 	}

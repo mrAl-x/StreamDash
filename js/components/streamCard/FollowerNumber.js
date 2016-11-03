@@ -2,10 +2,10 @@
 import React from 'react';
 
 // Store
-import FollowerListStore from '../stores/FollowerStore';
+import FollowerListStore from '../../stores/FollowerStore';
 
 // Actions
-import * as FollowersActions from '../actions/FollowersActions';
+import * as FollowersActions from '../../actions/FollowersActions';
 
 export default class FollowerNumber extends React.Component {
 	constructor() {
@@ -50,8 +50,8 @@ export default class FollowerNumber extends React.Component {
 	render() {
 		return (
 			<div>
-				<p>Followers</p>
-				<p>{this.state.totalFollowers}</p>
+				<p className="separator__number">{this.state.totalFollowers}</p>
+				<p className="separator__label">Followers</p>
 			</div>
 		)
 	}

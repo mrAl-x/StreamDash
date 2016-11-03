@@ -1,8 +1,8 @@
 import React from 'react';
 
-import StreamGameStore from '../stores/StreamGameStore';
-import GamesDropdown from '../components/GamesDropdown';
-import * as StreamGameActions from '../actions/StreamGameActions';
+import StreamGameStore from '../../stores/StreamGameStore';
+import GamesDropdown from '../../components/GamesDropdown';
+import * as StreamGameActions from '../../actions/StreamGameActions';
 
 export default class StreamGame extends React.Component {
 
@@ -60,7 +60,7 @@ export default class StreamGame extends React.Component {
 			)
 		}
 		else {
-			return <span onClick={this.handleClick.bind(this)} >{this.state.game || this.props.game}</span>
+			return <h3 className="container--stream__game" onClick={this.handleClick.bind(this)} >{this.state.game || this.props.game}</h3>
 		}
 	}
 }

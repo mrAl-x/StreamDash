@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ChangeStore from '../stores/ChangeStore';
-import * as ChangeActions from '../actions/ChangeActions';
+import ChangeStore from '../../stores/ChangeStore';
+import * as ChangeActions from '../../actions/ChangeActions';
 
 export default class StreamTitle extends React.Component {
 
@@ -43,7 +43,7 @@ export default class StreamTitle extends React.Component {
 			)
 		}
 		else {
-			return <h1 onClick={this.handleClick.bind(this)} >{this.state.title || this.props.title}</h1>
+			return <h2 className="container--stream__title" onClick={this.handleClick.bind(this)} >{this.state.title || this.props.title}</h2>
 		}
 	}
 }
