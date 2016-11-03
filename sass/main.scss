@@ -1,0 +1,86 @@
+@import './libs/fonts';
+@import './libs/vars';
+@import './libs/funcs';
+@import './libs/base';
+
+.header {
+	height: 120px;
+	background-color: #FFF;
+	text-align: center;
+
+	.header__logo {
+		position: relative;
+		display: inline-block;
+		margin-top: 20px;
+
+		color: $salmon;
+		font-family: 'Norwester';
+		font-size: em(59px);
+		font-weight: 400;
+		letter-spacing: .3px;
+
+		text-shadow: 0 2px 0 #EAEAEA;
+	}
+
+	.header__user {
+		position: absolute;
+		top: 45px;
+		margin-left: 240px;
+
+		color: $salmon;
+		font-size: em(22px);
+
+		&::after {
+			content: '';
+			position: absolute;
+			display: inline-block;
+
+			width: 14px;
+			height: 7px;
+			margin-top: 13px;
+    		margin-left: 7px;
+
+			background: url('../assets/images/icon_triangle.png') no-repeat center center;
+		}
+	}
+}
+
+.avatar {
+	position: relative;
+	display: block;
+	
+	width: 120px;
+	height: 120px;
+	margin: 45px auto 70px auto;
+
+	border: 4px solid #FFF;
+	border-radius: 50%;
+	text-align: center;
+	
+	overflow: hidden;
+
+	.avatar__pic {
+		width: 100%;
+		height: auto;
+	}
+}
+
+.gameList {
+	position: absolute;
+	width: 200px;
+	max-height: 250px;
+
+	img {
+		max-width: 64px;
+		height: auto;
+	}
+}
+
+.mainTitle {
+	text-align: center;
+}
+
+.chat {
+	border: 1px solid #DAD8DE;
+	border-radius: 4px;
+}

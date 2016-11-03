@@ -36,19 +36,38 @@ export default class Layout extends React.Component {
 
 	render() {
 		if (sessionStorage.twitch) {
-					// <StreamGame title={this.state.game} />
 			return (
 				<div>
-					<h3>Welcome to {this.state.display_name}'s dashboard!</h3>
-					<StreamTitle title={this.state.status} />
-					<span>Playing </span>
-					<StreamGame game={this.state.game} />
-					<FollowerNumber followers={this.state.followers} />
-					<p>Last follower (maybe not in this component?)</p>
-					<FollowerList />
+					<header className="header container-fluid">
+						<div className="container">
+							<div className="row">
+								<h1 className="header__logo">StreamDash</h1>
+								<span className="header__user">{this.state.display_name}</span>
+							</div>
+						</div>
+					</header>
+					<div className="container">
+						<div className="row">
+							<div className="col-md-12">
+								<div className="avatar">
+									<img src={this.state.logo} className="avatar__pic" />
+								</div>
+							</div>
+							<div className="col-md-7">
+								<StreamTitle title={this.state.status} />
+								<span>Playing </span>
+								<StreamGame game={this.state.game} />
+								<FollowerNumber followers={this.state.followers} />
+								<p>Last follower (maybe not in this component?)</p>
+								<FollowerList />
+							</div>
+							<div className="rightSide col-md-5">
+								<Chat />
+							</div>
+						</div>
+					</div>
 				</div>
-			)
-					// <Chat />
+			);
 		}
 		else {
 			return (
