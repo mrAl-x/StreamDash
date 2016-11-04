@@ -95,13 +95,13 @@
 			}
 
 			.streamData__input {
+				@extend .streamData__title;
 				width: 200px;
-				margin: 0 0 0 10px;
+				margin: -1px 0 -2px 9px;
 
 				border: none;
-				border-bottom: 1px solid $salmon;
+				border-bottom: 1px solid rgba($black, .2);
 
-				color: $black;
 				outline: none;
 			}
 

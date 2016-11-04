@@ -14,32 +14,36 @@ export default class StreamTitle extends React.Component {
 		}
 	}
 
-	labelClick() {
-		this.setState({
-			input: true
-		});
-	}
-
 	handleClick(e) {
+		const title = e.target.innerHTML;
 		this.setState({
-			title: e.target.innerHTML,
+			title: title,
 			input: true
 		});
 	}
 
-	handleNewTitle(e) {
+	confirmNewTitle(e) {
 		this.title = e.target.value;
+		this.clearSpaces();
+
+		if (this.title && this.title != '') {
+			ChangeActions.changeTitle(this.title);
+			this.setState({
+				title: this.title,
+				input: false
+			});
+		}
 	}
 
-	confirmNewTitle() {
-		// let tempTitle = this.title.split(' ');
-		// console.log(tempTitle);
-		if (this.title && this.title != '')
-		ChangeActions.changeTitle(this.title);
-		this.setState({
-			title: this.title,
-			input: false
-		});
+	clearSpaces() {
+		let title = this.title;
+		try {
+			while (title[0] == ' ') {
+				title = title.replace(/\s/, '');
+			}
+			this.title = title;
+		}
+		catch (err) {}
 	}
 
 	render() {
@@ -47,8 +51,7 @@ export default class StreamTitle extends React.Component {
 			return (
 				<div>
 					<input className="streamData__input" defaultValue={this.state.title || this.props.title}
-						onChange={this.handleNewTitle.bind(this)} />
-					<button onClick={this.confirmNewTitle.bind(this)}>Done</button>
+						onBlur={this.confirmNewTitle.bind(this)} autoFocus="true" />
 				</div>
 			)
 		}
