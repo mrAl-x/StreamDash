@@ -53,11 +53,11 @@ export default class StreamGame extends React.Component {
 		if (this.state.input && this.state.game) {
 			return (
 				<div>
-					<input defaultValue={this.state.game || this.props.game} onKeyUp={this.searchGame.bind(this)}
-						/>
+					<input className="streamData__input" defaultValue={this.state.game || this.props.game}
+						onKeyUp={this.searchGame.bind(this)} />
 					<GamesDropdown />
 				</div>
-			)
+			);
 		}
 		else {
 			return <h3 className="streamData__game" onClick={this.handleClick.bind(this)} >{this.state.game || this.props.game}</h3>

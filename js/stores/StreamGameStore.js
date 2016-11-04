@@ -7,6 +7,9 @@ class StreamGameStore extends EventEmitter {
 	constructor() {
 		super();
 		this.games = [];
+	}
+
+	componentWillMount() {
 		let token = JSON.parse(sessionStorage.twitch_oauth_session).token;
 		let clientId = sessionStorage.clientId;
 		let channel = JSON.parse(sessionStorage.twitch).display_name;

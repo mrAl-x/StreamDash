@@ -17,7 +17,7 @@ export default class StreamCard extends React.Component {
 				<div className="container__streamData">
 					<p className="streamData__label">Title</p>
 					<StreamTitle title={this.props.status} />
-					<p className="streamData__label">Playing </p>
+					<p className="streamData__label">Playing</p>
 					<StreamGame game={this.props.game} />
 					<div className="streamData__separator streamData__separator--followers">
 						<FollowerNumber followers={this.props.followers} />

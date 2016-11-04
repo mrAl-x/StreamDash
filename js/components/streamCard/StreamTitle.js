@@ -14,6 +14,12 @@ export default class StreamTitle extends React.Component {
 		}
 	}
 
+	labelClick() {
+		this.setState({
+			input: true
+		});
+	}
+
 	handleClick(e) {
 		this.setState({
 			title: e.target.innerHTML,
@@ -26,6 +32,9 @@ export default class StreamTitle extends React.Component {
 	}
 
 	confirmNewTitle() {
+		// let tempTitle = this.title.split(' ');
+		// console.log(tempTitle);
+		if (this.title && this.title != '')
 		ChangeActions.changeTitle(this.title);
 		this.setState({
 			title: this.title,
@@ -37,7 +46,8 @@ export default class StreamTitle extends React.Component {
 		if (this.state.input && this.state.title) {
 			return (
 				<div>
-					<input defaultValue={this.state.title || this.props.title} onChange={this.handleNewTitle.bind(this)} />
+					<input className="streamData__input" defaultValue={this.state.title || this.props.title}
+						onChange={this.handleNewTitle.bind(this)} />
 					<button onClick={this.confirmNewTitle.bind(this)}>Done</button>
 				</div>
 			)

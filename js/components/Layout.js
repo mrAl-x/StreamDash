@@ -9,7 +9,6 @@ import LoginButton from './LoginButton';
 import StreamCard from './StreamCard';
 import FollowerList from './FollowerList';
 import Chat from './Chat';
-// import TwitchAlertsButton from './TwitchAlertsButton';
 
 export default class Layout extends React.Component {
 	constructor() {
