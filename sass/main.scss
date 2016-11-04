@@ -71,32 +71,34 @@
 	justify-content: space-between;
 
 	.cards__container {
-
 		background-color: #FFF;
 		border-radius: 5px;
 		box-shadow: 0 2px 10px rgba($black, .1);
 
-		&.cards__container--stream {
+		overflow: hidden;
+
+		&.cards__streamData {
+			width: 350px;
 			height: 300px;
 
-			.container--stream__label {
+			.streamData__label {
 				margin: 20px 10px 0 10px;
 				color: $blue;
 				font-size: em(12px);
 			}
 
-			.container--stream__title {
+			.streamData__title {
 				margin: 0 0 0 10px;
 				color: $black;
 				font-size: em(28px);
 			}
 
-			.container--stream__game {
-				@extend .container--stream__title;
+			.streamData__game {
+				@extend .streamData__title;
 				font-size: em(22px);
 			}
 
-			.container--stream__separator {
+			.streamData__separator {
 				position: absolute;
 				bottom: 0;
 				width: 120px;
@@ -107,12 +109,12 @@
 				border-left: none;
 				text-align: center;
 
-				&.container--stream__separator--followers {
+				&.streamData__separator--followers {
 					right: 120px;
 					border-left: none;
 				}
 
-				&.container--stream__separator--subscribers {
+				&.streamData__separator--subscribers {
 					right: 0;
 					border-right: none;
 				}
@@ -129,6 +131,43 @@
 					font-size: em(12px);
 				}
 			}
+		}
+
+		.container__gameBox {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 2;
+
+			width: 230px;
+			height: 100%;
+			margin-left: -120px;
+
+			background: #ff8c8e;
+			background: -moz-linear-gradient(left,  #ff8c8e 0%, #eaaa87 100%);
+			background: -webkit-linear-gradient(left,  #ff8c8e 0%,#eaaa87 100%);
+			background: linear-gradient(to right,  #ff8c8e 0%,#eaaa87 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8c8e', endColorstr='#eaaa87',GradientType=1 );
+
+			transition: .4s margin;
+
+			&:hover {
+				margin-left: 0px;
+			}
+
+			.gameBox__image {
+				position: absolute;
+				top: 25px;
+				right: 25px;
+
+				width: auto;
+				height: 250px;
+			}
+
+		}
+
+		.container__streamData {
+			margin-left: 110px;
 		}
 	}
 }

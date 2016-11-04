@@ -43,7 +43,7 @@ export default class StreamTitle extends React.Component {
 			)
 		}
 		else {
-			return <h2 className="container--stream__title" onClick={this.handleClick.bind(this)} >{this.state.title || this.props.title}</h2>
+			return <h2 className="streamData__title" onClick={this.handleClick.bind(this)} >{this.state.title || this.props.title}</h2>
 		}
 	}
 }

@@ -60,7 +60,7 @@ export default class StreamGame extends React.Component {
 			)
 		}
 		else {
-			return <h3 className="container--stream__game" onClick={this.handleClick.bind(this)} >{this.state.game || this.props.game}</h3>
+			return <h3 className="streamData__game" onClick={this.handleClick.bind(this)} >{this.state.game || this.props.game}</h3>
 		}
 	}
 }

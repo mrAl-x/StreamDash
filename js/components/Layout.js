@@ -53,7 +53,7 @@ export default class Layout extends React.Component {
 							</div>
 						</div>
 						<div className="cards row">
-							<div className="cards__container cards__container--stream col-lg-4">
+							<div className="cards__container cards__streamData col-lg-4">
 								<StreamCard status={this.state.status} game={this.state.game} followers={this.state.followers} />
 							</div>
 							<div className="cards__container cards__container--followers col-lg-3">
