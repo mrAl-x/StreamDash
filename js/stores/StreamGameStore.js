@@ -9,10 +9,10 @@ class StreamGameStore extends EventEmitter {
 		this.games = [];
 	}
 
-	componentWillMount() {
-		let token = JSON.parse(sessionStorage.twitch_oauth_session).token;
-		let clientId = sessionStorage.clientId;
-		let channel = JSON.parse(sessionStorage.twitch).display_name;
+	getData() {
+		const token = JSON.parse(sessionStorage.twitch_oauth_session).token;
+		const clientId = sessionStorage.clientId;
+		const channel = JSON.parse(sessionStorage.twitch).display_name;
 
 		this.twitch = {
 			token,
@@ -33,6 +33,8 @@ class StreamGameStore extends EventEmitter {
 	}
 
 	pickGame(title) {
+		this.getData();
+
 		const url = `https://api.twitch.tv/kraken/channels/`
 		+ `${this.twitch.channel}?oauth_token=${this.twitch.token}`
 		+ `&client_id=${this.twitch.clientId}&channel[game]=${title}&_method=put`;
@@ -40,10 +42,21 @@ class StreamGameStore extends EventEmitter {
 			let session = JSON.parse(sessionStorage.twitch);
 			session.game = title;
 			sessionStorage.twitch = JSON.stringify(session);
-			console.log('Game name changed');
+			this.emit('gameChange');
 		})
 		.catch(() => {
 			console.error(data);
+		});
+	}
+
+	getGameBox(title) {
+		const url = `https://api.twitch.tv/kraken/search/games?q=${title}&type=suggest&client_id=${sessionStorage.clientId}`;
+		axios.get(url).then((data) => {
+			this.games = data.data.games;
+			this.emit('changeBox');
+		})
+		.catch(() => {
+			console.error(data)
 		});
 	}
 
@@ -59,6 +72,10 @@ class StreamGameStore extends EventEmitter {
 			}
 			case 'PICK_GAME': {
 				this.pickGame(action.title);
+				break;
+			}
+			case 'GET_GAME_BOX': {
+				this.getGameBox(action.title);
 				break;
 			}
 		}

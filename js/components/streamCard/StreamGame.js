@@ -16,6 +16,16 @@ export default class StreamGame extends React.Component {
 		this.timeout;
 	}
 
+	componentDidMount() {
+		StreamGameStore.on('gameChange', () => {
+			let session = JSON.parse(sessionStorage.twitch);
+			this.setState({
+				game: session.game,
+				input: false
+			});
+		});
+	}
+
 	handleClick(e) {
 		this.setState({
 			game: e.target.innerHTML,
@@ -27,7 +37,7 @@ export default class StreamGame extends React.Component {
 		this.game = e.target.value;
 		if (e.target.value.length >= 2) {
 			// Creates a delay after the user stops typing before triggering the action
-			this.typewatch(e.target.value, 1000);
+			this.typewatch(e.target.value, 500);
 		}
 	}
 
@@ -42,19 +52,12 @@ export default class StreamGame extends React.Component {
 		}, timer);
 	}
 
-	confirmNewGame() {
-		this.setState({
-			game: this.game,
-			input: false
-		});
-	}
-
 	render() {
 		if (this.state.input && this.state.game) {
 			return (
 				<div>
 					<input className="streamData__input streamData__input--game" defaultValue={this.state.game || this.props.game}
-						onKeyUp={this.searchGame.bind(this)} />
+						onKeyUp={this.searchGame.bind(this)} autoFocus="true" />
 					<GamesDropdown />
 				</div>
 			);

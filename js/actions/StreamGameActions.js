@@ -13,3 +13,10 @@ export function pickGame(title) {
 		title
 	});
 }
+
+export function getGameBox(title) {
+	dispatcher.dispatch({
+		type: 'GET_GAME_BOX',
+		title
+	});
+}

@@ -13,13 +13,20 @@ export default class StreamGameBox extends React.Component {
 	}
 
 	componentWillMount() {
-		StreamGameActions.searchGame(this.state.game);
-		StreamGameStore.on('change', () => {
+		StreamGameActions.getGameBox(this.state.game);
+		StreamGameStore.on('changeBox', () => {
 			let gameBox = StreamGameStore.returnGames();
 			gameBox = gameBox[0].box.large;
 			this.setState({
 				box: gameBox
 			});
+		});
+	}
+
+	componentDidMount() {
+		StreamGameStore.on('gameChange', () => {
+			let game = JSON.parse(sessionStorage.twitch);
+			StreamGameActions.getGameBox(game.game);
 		});
 	}
 
