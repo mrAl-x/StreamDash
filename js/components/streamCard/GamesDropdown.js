@@ -1,9 +1,9 @@
 // Dependecies
 import React from 'react';
 
-import StreamGameStore from '../stores/StreamGameStore';
+import StreamGameStore from '../../stores/StreamGameStore';
 
-import * as StreamGameActions from '../actions/StreamGameActions';
+import * as StreamGameActions from '../../actions/StreamGameActions';
 
 export default class GamesDropdown extends React.Component {
 	constructor() {
@@ -32,9 +32,9 @@ export default class GamesDropdown extends React.Component {
 			const name = this.state[i].name;
 			const logo = this.state[i].box.small;
 			games.push(
-				<li key={i} onClick={this.pickGame.bind(this, name)}>
-					<img src={logo} alt="" />
-					<span>{name}</span>
+				<li className="gameList__game" key={i} onClick={this.pickGame.bind(this, name)}>
+					<img className="game__image" src={logo} alt="" />
+					<span className="game__name">{name}</span>
 				</li>
 			);
 		}
@@ -49,7 +49,7 @@ export default class GamesDropdown extends React.Component {
 	render() {
 		if (this.state) {
 			return (
-				<ul className="gameList">
+				<ul className="streamData__gameList">
 					{this.returnGames()}
 				</ul>
 			);

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import StreamGameStore from '../../stores/StreamGameStore';
-import GamesDropdown from '../../components/GamesDropdown';
+import GamesDropdown from './GamesDropdown';
 import * as StreamGameActions from '../../actions/StreamGameActions';
 
 export default class StreamGame extends React.Component {
@@ -53,7 +53,7 @@ export default class StreamGame extends React.Component {
 		if (this.state.input && this.state.game) {
 			return (
 				<div>
-					<input className="streamData__input" defaultValue={this.state.game || this.props.game}
+					<input className="streamData__input streamData__input--game" defaultValue={this.state.game || this.props.game}
 						onKeyUp={this.searchGame.bind(this)} />
 					<GamesDropdown />
 				</div>

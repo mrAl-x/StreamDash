@@ -103,6 +103,11 @@
 				border-bottom: 1px solid rgba($black, .2);
 
 				outline: none;
+
+				&.streamData__input--game {
+					font-size: em(22px);
+
+				}
 			}
 
 			.streamData__game {
@@ -141,6 +146,44 @@
 					margin: 0;
 					color: #C0C0C0;
 					font-size: em(12px);
+				}
+			}
+
+			.streamData__gameList {
+				position: absolute;
+				z-index: 1;
+
+				width: $dropdownWidth;
+				height: 155px;
+				margin: 2px 0 0 9px;
+				padding: 0;
+
+				background-color: #FFF;
+				box-shadow: 0 10px 10px rgba($black, .1);
+
+				overflow: scroll;
+
+				.gameList__game {
+					width: $dropdownWidth;
+					height: 50px;
+					padding: 0 5px;
+
+					overflow: hidden;
+					cursor: pointer;
+
+					&:hover {
+						background: rgba(#67439E, .2);
+					}
+
+					.game__image {
+						width: auto;
+						height: 40px;
+						margin: 5px 5px 5px 0;
+					}
+
+					.game__name {
+						font-size: em(14px);
+					}
 				}
 			}
 		}
