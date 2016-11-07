@@ -16,7 +16,7 @@ export default class GamesDropdown extends React.Component {
 			let games = [
 				...StreamGameStore.returnGames()
 			];
-			games = games.slice(0, 5);
+			games = games.slice(0, 8);
 
 			this.setState({
 				...games

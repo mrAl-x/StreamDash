@@ -8,7 +8,7 @@ import LoginStore from '../stores/LoginStore';
 import LoginButton from './LoginButton';
 import StreamCard from './StreamCard';
 import FollowerList from './followersCard/FollowerList';
-import Chat from './Chat';
+import Chat from './chatCard/Chat';
 
 export default class Layout extends React.Component {
 	constructor() {
@@ -31,6 +31,11 @@ export default class Layout extends React.Component {
 		});
 	}
 
+	logout(e) {
+		e.preventDefault();
+		sessionStorage.clear();
+	}
+
 	render() {
 		if (sessionStorage.twitch) {
 			return (
@@ -39,7 +44,13 @@ export default class Layout extends React.Component {
 						<div className="container">
 							<div className="row">
 								<h1 className="header__logo">StreamDash</h1>
-								<span className="header__user">{this.state.display_name}</span>
+								<div className="header__user">
+									<p className="userName">{this.state.display_name}</p>
+									<div className="user__logout">
+										<a className="logout__link" href="#" onClick={this.logout.bind(this)}>Logout</a>
+									</div>
+								</div>
+
 							</div>
 						</div>
 					</header>
