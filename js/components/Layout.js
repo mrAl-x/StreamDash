@@ -7,7 +7,7 @@ import LoginStore from '../stores/LoginStore';
 // Components
 import LoginButton from './LoginButton';
 import StreamCard from './StreamCard';
-import FollowerList from './FollowerList';
+import FollowerList from './followersCard/FollowerList';
 import Chat from './Chat';
 
 export default class Layout extends React.Component {
@@ -55,16 +55,11 @@ export default class Layout extends React.Component {
 							<div className="cards__container cards__streamData col-lg-4">
 								<StreamCard status={this.state.status} game={this.state.game} followers={this.state.followers} />
 							</div>
-							<div className="cards__container cards__container--followers col-lg-3">
+							<div className="cards__container cards__followers col-lg-4">
 								<FollowerList />
 							</div>
-							<div className="rightSide col-lg-5">
-
-
-
-
-
-
+							<div className="rightSide col-lg-4">
+								<Chat />
 							</div>
 						</div>
 					</div>

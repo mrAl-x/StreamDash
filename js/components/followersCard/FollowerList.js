@@ -2,13 +2,13 @@
 import React from 'react';
 
 // Store
-import FollowerListStore from '../stores/FollowerStore';
+import FollowerListStore from '../../stores/FollowerStore';
 
 // Components
 import FollowerLink from './FollowerLink';
 
 // Actions
-import * as FollowersActions from '../actions/FollowersActions';
+import * as FollowersActions from '../../actions/FollowersActions';
 
 export default class FollowerList extends React.Component {
 	constructor() {
@@ -31,7 +31,7 @@ export default class FollowerList extends React.Component {
 	}
 
 	returnFollowers() {
-		const totalFollowers = Object.keys(this.state).length;
+		const totalFollowers = 20;
 		const twitchUrl = 'https://www.twitch.tv/';
 		let followers = [];
 		for (let i = 0; i < totalFollowers; i++ ) {
@@ -47,7 +47,7 @@ export default class FollowerList extends React.Component {
 	render() {
 		if (this.state) {
 			return (
-				<ul>
+				<ul className="followers__list">
 					{this.returnFollowers()}
 				</ul>
 			)

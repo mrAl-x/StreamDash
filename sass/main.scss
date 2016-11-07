@@ -246,6 +246,45 @@
 }
 
 .chat {
-	border: 1px solid #DAD8DE;
+	@extend .cards__container;
+	position: absolute;
+	left: 0;
+
+	border: 1px solid rgba(#DAD8DE, .8);
 	border-radius: 4px;
+}
+
+.cards__followers {
+	height: 300px;
+	padding: 5px 20px;
+
+	column-count: 2;
+	-webkit-column-count: 2; /* Chrome, Safari, Opera */
+	-moz-column-count: 2; /* Firefox */
+
+	column-gap: 10px;
+	-webkit-column-gap: 10px; /* Chrome, Safari, Opera */
+	-moz-column-gap: 10px; /* Firefox */
+
+	.followers__list {
+		width: 170px;
+		margin: 0;
+		padding: 0;
+
+		.list__follower {
+			margin: 4px 0;
+
+			font-size: em(18px);
+			overflow: hidden;
+
+			&:hover {
+				background-color: #FFF;
+				overflow: visible;
+			}
+
+			.follower__link {
+				color: $blue;
+			}
+		}
+	}
 }
