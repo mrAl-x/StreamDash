@@ -119,6 +119,22 @@
 				margin: 0 0 0 10px;
 				color: $black;
 				font-size: em(28px);
+
+				&::after {
+					content: '';
+					position: absolute;
+					width: 10px;
+					height: 10px;
+					margin-top: 5px;
+					margin-left: 3px;
+
+					background: url('../assets/images/icon_pencil.png') no-repeat center center;
+					opacity: 0;
+				}
+
+				&:hover::after {
+					opacity: 1;
+				}
 			}
 
 			.streamData__input {
