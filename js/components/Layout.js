@@ -70,7 +70,7 @@ export default class Layout extends React.Component {
 								<FollowerList />
 							</div>
 							<div className="rightSide col-lg-4">
-
+								<Chat />
 							</div>
 						</div>
 					</div>
