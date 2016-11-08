@@ -52,12 +52,21 @@ export default class StreamGame extends React.Component {
 		}, timer);
 	}
 
+	blur(e) {
+		const dropdown = document.getElementsByClassName('streamData__gameList')[0];
+		if(!dropdown || e.target.value == '') {
+			this.setState({
+				input: false
+			});
+		}
+	}
+
 	render() {
 		if (this.state.input && this.state.game) {
 			return (
 				<div>
 					<input className="streamData__input streamData__input--game" defaultValue={this.state.game || this.props.game}
-						onKeyUp={this.searchGame.bind(this)} autoFocus="true" />
+						onKeyUp={this.searchGame.bind(this)} onBlur={this.blur.bind(this)} autoFocus="true" />
 					<GamesDropdown />
 				</div>
 			);
