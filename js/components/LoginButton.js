@@ -22,7 +22,7 @@ export default class LoginButton extends React.Component {
 	}
 
 	getChannel() {
-		const clientId = 'lthdupwglh0epkjmqo93smokw2agfdl'
+		const clientId = 'lthdupwglh0epkjmqo93smokw2agfdl';
 		Twitch.init({clientId: clientId}, function(error, status) {
 			Twitch.api({method: 'channel'}, function(error, channel) {
 				channel = JSON.stringify(channel);
@@ -44,7 +44,28 @@ export default class LoginButton extends React.Component {
 	render() {
 		return (
 			<div>
-				<img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" onClick={this.twitchLogin.bind(this)} style={{cursor:'pointer'}} className="" href="#" />
+				<header className="header container-fluid">
+					<div className="container">
+						<div className="row">
+							<h1 className="header__logo">StreamDash</h1>
+						</div>
+					</div>
+				</header>
+				<div className="container">
+					<div className="row">
+						<button className="loginButton" onClick={this.twitchLogin.bind(this)}>Login with Twitch</button>
+						<p className="loginCredentials">
+							If you don't have a Twitch account you can log in with: <br /><br />
+							User: streamdashdemo <br />
+							Password: 12345678
+							<br />
+							<br />
+							<small className="loginCredentials__smaller">
+								If you can't see the dashboard, try refreshing the page - working on this nasty bug ;)
+							</small>
+						</p>
+					</div>
+				</div>
 			</div>
 		);
 	}

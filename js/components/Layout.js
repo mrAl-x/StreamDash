@@ -1,7 +1,6 @@
 // Dependecies
 import React from 'react';
 
-// Stores
 import LoginStore from '../stores/LoginStore';
 
 // Components
@@ -19,21 +18,16 @@ export default class Layout extends React.Component {
 			this.state = {...channel, clientId};
 		}
 		catch(err) {
-			console.error('not logged in ', err);
+			// console.error('not logged in', err);
 		}
-	}
-
-	componentWillMount() {
-		LoginStore.on('change', () => {
-			const channel = JSON.parse(sessionStorage.twitch);
-			const cliendId = sessionStorage.clientId;
-			this.setState({...channel, clientId});
-		});
 	}
 
 	logout(e) {
 		e.preventDefault();
+		localStorage.clear();
 		sessionStorage.clear();
+		window.location.hash = '';
+		this.forceUpdate();
 	}
 
 	render() {

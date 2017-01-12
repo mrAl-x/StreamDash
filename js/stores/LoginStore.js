@@ -3,7 +3,7 @@ import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher';
 
 class LoginStore extends EventEmitter {
-	handleChannel(channel, clientId) {
+	getChannel(channel, clientId) {
 		sessionStorage.twitch = channel;
 		sessionStorage.clientId = clientId;
 		this.emit('change');
@@ -12,7 +12,7 @@ class LoginStore extends EventEmitter {
 	handleActions(action) {
 		switch (action.type) {
 			case 'GET_CHANNEL': {
-				this.handleChannel(action.channel, action.clientId);
+				this.getChannel(action.channel, action.clientId);
 			}
 		}
 	}
